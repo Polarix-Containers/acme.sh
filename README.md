@@ -1,2 +1,6 @@
 # acme.sh
-Regular rebuilds of upstream Vaultwarden container, with latest alpine hardened_malloc
+
+![Build, scan & push](https://github.com/Blue-OCI/acme.sh/actions/workflows/build.yml/badge.svg)
+
+### Features & usage
+- Rebases [official image](https://github.com/docker-library/postgres) on Blue-OCI Alpine container, to be used as a drop-in replacement.
