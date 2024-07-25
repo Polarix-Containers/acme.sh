@@ -4,6 +4,7 @@
 
 ### Features & usage
 - Rebases [official image](https://github.com/docker-library/postgres) on Blue-OCI Alpine container, to be used as a drop-in replacement.
+- Automatic update is disabled by default. Set `AUTO_UPGRADE=1` environment if you want to automatically update. Since this container is rebuilt daily, it is better practice to just pull a new build of the container.
 
 ### Licensing
 - Licensed under GPL 3 to comply with licensing by acme.sh.
