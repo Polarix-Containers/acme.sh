@@ -8,4 +8,4 @@
 
 ### Licensing
 - Licensed under GPL 3 to comply with licensing by acme.sh.
-- Any image built by Blue OCI is provided under the combination of license terms resulting from the use of individual packages.
+- Any image built by Polarix Containers is provided under the combination of license terms resulting from the use of individual packages.
