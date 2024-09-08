@@ -1,4 +1,4 @@
-FROM ghcr.io/polarix-containers/alpine:latest
+FROM alpine:latest
 
 RUN apk --no-cache add -f \
   openssl \
@@ -69,6 +69,8 @@ if [ \"\$1\" = \"daemon\" ];  then \n \
 else \n \
  exec -- \"\$@\"\n \
 fi\n" >/entry.sh && chmod +x /entry.sh
+
+COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
 
 VOLUME /acme.sh
 
