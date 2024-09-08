@@ -71,6 +71,7 @@ else \n \
 fi\n" >/entry.sh && chmod +x /entry.sh
 
 COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
+ENV LD_PRELOAD="/usr/local/lib/libhardened_malloc.so"
 
 VOLUME /acme.sh
 
