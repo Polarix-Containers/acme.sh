@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+LABEL maintainer="Thien Tran contact@tommytran.io"
+
 RUN apk --no-cache add -f \
   openssl \
   openssh-client \
