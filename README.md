@@ -3,7 +3,7 @@
 ![Build, scan & push](https://github.com/Polarix-Containers/acme.sh/actions/workflows/build.yml/badge.svg)
 
 ### Features & usage
-- Rebases [official image](https://github.com/acmesh-official/acme.sh/wiki/Run-acme.sh-in-docker) to the the latest Alpine image, to be used as a drop-in replacement.
+- Rebases [official image](https://github.com/acmesh-official/acme.sh/wiki/Run-acme.sh-in-docker) to the latest Alpine image, to be used as a drop-in replacement.
 - Automatic update is disabled by default. Set `AUTO_UPGRADE=1` environment if you want to automatically update. Since this container is rebuilt daily, it is better practice to just pull a new build of the container.
 
 ### Licensing
