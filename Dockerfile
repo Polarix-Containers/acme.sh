@@ -24,7 +24,7 @@ ARG AUTO_UPGRADE=0
 ENV AUTO_UPGRADE $AUTO_UPGRADE
 
 #Install
-COPY ./ /install_acme.sh/
+ADD https://github.com/acmesh-official/acme.sh.git /install_acme.sh/
 RUN cd /install_acme.sh && ([ -f /install_acme.sh/acme.sh ] && /install_acme.sh/acme.sh --install || curl https://get.acme.sh | sh) && rm -rf /install_acme.sh/
 
 
