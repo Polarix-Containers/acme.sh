@@ -65,12 +65,7 @@ RUN for verb in help \
     printf -- "%b" "#!/usr/bin/env sh\n/root/.acme.sh/acme.sh --${verb} --config-home /acme.sh \"\$@\"" >/usr/local/bin/--${verb} && chmod +x /usr/local/bin/--${verb} \
   ; done
 
-RUN printf "%b" '#!'"/usr/bin/env sh\n \
-if [ \"\$1\" = \"daemon\" ];  then \n \
- exec crond -n -s -m off \n \
-else \n \
- exec -- \"\$@\"\n \
-fi\n" >/entry.sh && chmod +x /entry.sh
+COPY --chmod=755 entry.sh /
 
 RUN apk --no-cache add libstdc++
 COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
