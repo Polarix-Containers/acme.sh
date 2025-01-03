@@ -19,9 +19,7 @@ RUN apk --no-cache add -f \
 
 ENV LE_CONFIG_HOME=/acme.sh
 
-ARG AUTO_UPGRADE=0
-
-ENV AUTO_UPGRADE=$AUTO_UPGRADE
+ENV AUTO_UPGRADE=0
 
 #Install
 ADD https://github.com/acmesh-official/acme.sh.git /install_acme.sh/
