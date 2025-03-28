@@ -24,9 +24,9 @@ ENV AUTO_UPGRADE=0
 #Install
 RUN mkdir -p /install_acme.sh/ /root/.cache/crontab
 ADD https://raw.githubusercontent.com/acmesh-official/acme.sh/refs/heads/master/acme.sh \
-    https://github.com/acmesh-official/acme.sh.git:deploy \
-    https://github.com/acmesh-official/acme.sh.git:dnsapi \
-    https://github.com/acmesh-official/acme.sh.git:notify /install_acme.sh/
+    https://github.com/acmesh-official/acme.sh.git#:deploy \
+    https://github.com/acmesh-official/acme.sh.git#:dnsapi \
+    https://github.com/acmesh-official/acme.sh.git#:notify /install_acme.sh/
 RUN cd /install_acme.sh && ([ -f /install_acme.sh/acme.sh ] && /install_acme.sh/acme.sh --install || curl https://get.acme.sh | sh) && rm -rf /install_acme.sh/
 
 
