@@ -1,6 +1,17 @@
+ARG UID=200022
+ARG GID=200022
+
 FROM alpine:latest
 
 LABEL maintainer="Thien Tran contact@tommytran.io"
+
+ARG UID
+ARG GID
+
+ENV LE_WORKING_DIR=/acmebin
+ENV LE_CONFIG_HOME=/acme.sh
+ENV HOME=/acme.sh
+ENV AUTO_UPGRADE=0
 
 RUN apk --no-cache add -f \
   openssl \
@@ -15,13 +26,8 @@ RUN apk --no-cache add -f \
   tar \
   libidn \
   jq \
-  cronie
-
-ENV LE_WORKING_DIR=/acmebin
-
-ENV LE_CONFIG_HOME=/acme.sh
-
-ENV AUTO_UPGRADE=0
+  yq-go \
+  supercronic
 
 #Install
 RUN mkdir -p /install_acme.sh/ /root/.cache/crontab
@@ -31,10 +37,14 @@ ADD https://raw.githubusercontent.com/acmesh-official/acme.sh/refs/heads/master/
     https://github.com/acmesh-official/acme.sh.git#:dnsapi \
     https://github.com/acmesh-official/acme.sh.git#:notify /install_acme.sh/
 
+RUN --network=none
+  addgroup -g ${GID} acme \
+  && adduser -u ${UID} --ingroup acme --disabled-password --system acme --home $LE_CONFIG_HOME
+
 RUN cd /install_acme.sh && ([ -f /install_acme.sh/acme.sh ] && /install_acme.sh/acme.sh --install || curl https://get.acme.sh | sh) && rm -rf /install_acme.sh/
 
-
-RUN ln -s $LE_WORKING_DIR/acme.sh /usr/local/bin/acme.sh && crontab -l | grep acme.sh | sed 's#> /dev/null#> /proc/1/fd/1 2>/proc/1/fd/2#' | crontab -
+RUN ln -s $LE_WORKING_DIR/acme.sh /usr/local/bin/acme.sh \
+  && chown -R acme:acme $LE_CONFIG_HOME
 
 RUN for verb in help \
   version \
