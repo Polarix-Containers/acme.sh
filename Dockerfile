@@ -37,7 +37,7 @@ ADD https://raw.githubusercontent.com/acmesh-official/acme.sh/refs/heads/master/
     https://github.com/acmesh-official/acme.sh.git#:dnsapi \
     https://github.com/acmesh-official/acme.sh.git#:notify /install_acme.sh/
 
-RUN --network=none
+RUN --network=none \
   addgroup -g ${GID} acme \
   && adduser -u ${UID} --ingroup acme --disabled-password --system acme --home $LE_CONFIG_HOME
 
